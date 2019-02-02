@@ -1119,3 +1119,28 @@ func TestTitle(t *testing.T) {
 		}
 	}
 }
+
+func ExampleRowLine() {
+	table := NewWriter(os.Stdout)
+	table.SetHeader([]string{"Food", "Rating"})
+
+	table.Append([]string{"Filet Mignon", "****"})
+	table.Append([]string{"New York Steak", "***"})
+
+	table.AppendRowLine()
+
+	table.Append([]string{"Broccoli", "*"})
+	table.Append([]string{"Cauliflower", "***"})
+
+	table.Render() // Send output
+
+	// Output: +----------------+--------+
+	// |      FOOD      | RATING |
+	// +----------------+--------+
+	// | Filet Mignon   | ****   |
+	// | New York Steak | ***    |
+	// +----------------+--------+
+	// | Broccoli       | *      |
+	// | Cauliflower    | ***    |
+	// +----------------+--------+
+}
